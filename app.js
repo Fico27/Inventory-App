@@ -3,6 +3,7 @@ const app = express();
 const inventoryRouter = require("./router/inventoryRouter");
 
 app.set("view engine", "ejs");
+app.use(express.static(__dirname + "/public"));
 app.use(express.urlencoded({ extended: true }));
 app.use("/", inventoryRouter);
 // Need to add user router.
