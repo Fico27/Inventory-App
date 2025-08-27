@@ -29,15 +29,15 @@ name VARCHAR(255) NOT NULL UNIQUE
 CREATE TABLE IF NOT EXISTS book_authors (
 
 book_id INTEGER NOT NULL REFERENCES books(id) ON DELETE CASCADE,
-author_id INTEGER NOT NULL REFERENCES author(id) on DELETE CASCADE,
+author_id INTEGER NOT NULL REFERENCES authors(id) on DELETE CASCADE,
 PRIMARY KEY (book_id, author_id)
 
 );
 
 CREATE TABLE IF NOT EXISTS book_genres (
 
-book_id INTERGER NOT NULL REFERENCES books(id) ON DELETE CASCADE,
-genere_id INTEGER NOT NULL REFERENCES genre(id) ON DELETE CASCADE,
+book_id INTEGER NOT NULL REFERENCES books(id) ON DELETE CASCADE,
+genre_id INTEGER NOT NULL REFERENCES genre(id) ON DELETE CASCADE,
 PRIMARY KEY (book_id, genre_id)
 
 );
@@ -52,7 +52,8 @@ async function main() {
   });
   await client.connect();
   await client.query(SQL);
-  await client.end("done");
+  await client.end();
+  console.log("done");
 }
 
 main();
