@@ -15,3 +15,7 @@ async function getAllBooks(searchTerm = "") {
   const { rows } = await pool.query(queryText, queryParams);
   return rows;
 }
+
+module.exports = {
+  getAllBooks,
+};

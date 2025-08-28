@@ -48,4 +48,18 @@ body {
   display: flex;
   justify-content: column;
   align-items: center;
+  flex-direction: column;
+  overflow: scroll;
+  width: 100%;
+}
+
+.book-holder {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.holder {
+  display: flex;
+  justify-content: space-evenly;
 }

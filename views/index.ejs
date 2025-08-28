@@ -16,7 +16,7 @@
         <ul>
           <li>Books</li>
           <li>Genre</li>
-          <li>Suthor</li>
+          <li>Author</li>
         </ul>
       </section>
 
@@ -28,6 +28,24 @@
 
         <div class="book-container">
           <h2>List of books:</h2>
+
+          <% if (books.length === 0){ %>
+          <p><%= message || "No Books Found!" %></p>
+          <% } else { %>
+          <div class="book-holder">
+            <% books.forEach(book => { %>
+            <div class="holder">
+              <h2 class=""><%= book.title %></h2>
+              <p><%= book.author %></p>
+              <p><%= book.description %></p>
+              <p><%= book.isbn %></p>
+              <p><%= book.published %></p>
+              <p><%= book.quantity %></p>
+              <p><%= book.price %></p>
+            </div>
+            <% }) %>
+          </div>
+          <% } %>
         </div>
       </main>
     </div>
