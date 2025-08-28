@@ -16,18 +16,30 @@
         <ul>
           <li>Books</li>
           <li>Genre</li>
-          <li>Suthor</li>
+          <li>Author</li>
         </ul>
       </section>
 
       <main class="main">
         <div class="main-heading">
           <h2>Welcome to The Book Inventory Management System</h2>
-          <p>Below is a list of the of our current books</p>
         </div>
 
-        <div class="author-container">
+        <div class="container">
           <h2>List of Genres:</h2>
+          <div class="genre-container">
+            <% if(genres.length === 0) {%>
+            <p><%= message || "No Genres Found"%></p>
+            <%} else { %>
+            <div class="genre-container">
+              <% genres.forEach(genre =>{%>
+
+              <h2><%= genre.name %></h2>
+
+              <% })%>
+            </div>
+            <% } %>
+          </div>
         </div>
       </main>
     </div>
