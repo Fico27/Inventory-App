@@ -16,18 +16,33 @@
         <ul>
           <li>Books</li>
           <li>Genre</li>
-          <li>Suthor</li>
+          <li>Author</li>
         </ul>
       </section>
 
       <main class="main">
         <div class="main-heading">
           <h2>Welcome to The Book Inventory Management System</h2>
-          <p>Below is a list of the of our current books</p>
         </div>
 
-        <div class="author-container">
+        <div class="authors-container">
           <h2>List of authors:</h2>
+
+          <%if(authors.length === 0) { %>
+          <p><%= message %></p>
+          <% } else { %>
+          <div class="author-holder">
+            <% authors.forEach(author => { %>
+
+            <div class="author-container">
+              <h2><%= author.name%></h2>
+              <p><%= author.birth_date%></p>
+              <p><%= author.bio%></p>
+            </div>
+
+            <%})%>
+          </div>
+          <% } %>
         </div>
       </main>
     </div>
