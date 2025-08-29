@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Inventory Manager</title>
-    <link rel="stylesheet" href="/index.css" />
+    <link rel="stylesheet" href="/author.css" />
   </head>
   <body>
     <div class="container">
@@ -31,17 +31,23 @@
           <%if(authors.length === 0) { %>
           <p><%= message %></p>
           <% } else { %>
-          <div class="author-holder">
-            <% authors.forEach(author => { %>
+          <table class="author-table">
+            <thead>
+              <th>Author</th>
+              <th>Birthdate</th>
+              <th>Bio</th>
+            </thead>
+            <tbody>
+              <% authors.forEach(author => { %>
+              <tr>
+                <td><%= author.name%></td>
+                <td><%= new Date(author.birth_date).getFullYear()%></td>
+                <td><%= author.bio%></td>
+              </tr>
 
-            <div class="author-container">
-              <h2><%= author.name%></h2>
-              <p><%= author.birth_date%></p>
-              <p><%= author.bio%></p>
-            </div>
-
-            <%})%>
-          </div>
+              <%})%>
+            </tbody>
+          </table>
           <% } %>
         </div>
       </main>

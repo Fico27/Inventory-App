@@ -24,12 +24,34 @@ body {
 }
 
 .sidebar {
+  display: flex;
+  justify-content: center;
   grid-area: sidebar;
   background-color: bisque;
   text-align: center;
 }
 
+.sidebar ul,
+.sidebar li {
+  text-decoration: none;
+  list-style: none;
+  padding: 0;
+}
+.sidebar ul li {
+  border: 2px solid black;
+  padding: 10px;
+  margin-top: 1rem;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: black;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
 .main {
+  width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -42,4 +64,24 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.authors-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 80%;
+  overflow-y: auto;
+}
+
+.author-table {
+  width: 100%;
+}
+
+.author-table th,
+.author-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  vertical-align: top;
 }

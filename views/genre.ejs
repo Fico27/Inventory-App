@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Inventory Manager</title>
-    <link rel="stylesheet" href="/index.css" />
+    <link rel="stylesheet" href="/genre.css" />
   </head>
   <body>
     <div class="container">
@@ -25,21 +25,27 @@
           <h2>Welcome to The Book Inventory Management System</h2>
         </div>
 
-        <div class="container">
+        <div class="genre-container">
           <h2>List of Genres:</h2>
-          <div class="genre-container">
-            <% if(genres.length === 0) {%>
-            <p><%= message || "No Genres Found"%></p>
-            <%} else { %>
-            <div class="genre-container">
+
+          <% if(genres.length === 0) {%>
+          <p><%= message || "No Genres Found"%></p>
+          <%} else { %>
+          <table class="genre-table">
+            <thead>
+              <th>Genres</th>
+            </thead>
+            <tbody>
               <% genres.forEach(genre =>{%>
 
-              <h2><%= genre.name %></h2>
+              <tr>
+                <td><%= genre.name %></td>
+              </tr>
 
               <% })%>
-            </div>
-            <% } %>
-          </div>
+            </tbody>
+          </table>
+          <% } %>
         </div>
       </main>
     </div>
