@@ -14,9 +14,9 @@
 
       <section class="sidebar">
         <ul>
-          <li>Books</li>
-          <li>Genre</li>
-          <li>Author</li>
+          <li><a href="/author">Authors</a></li>
+          <li><a href="/">Books</a></li>
+          <li><a href="/genre">Genres</a></li>
         </ul>
       </section>
 
@@ -32,19 +32,31 @@
           <% if (books.length === 0){ %>
           <p><%= message || "No Books Found!" %></p>
           <% } else { %>
-          <div class="book-holder">
-            <% books.forEach(book => { %>
-            <div class="holder">
-              <h2 class=""><%= book.title %></h2>
-              <p><%= book.author %></p>
-              <p><%= book.description %></p>
-              <p><%= book.isbn %></p>
-              <p><%= book.published %></p>
-              <p><%= book.quantity %></p>
-              <p><%= book.price %></p>
-            </div>
-            <% }) %>
-          </div>
+          <table class="book-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>ISBN</th>
+                <th>Year Published</th>
+                <th>Quantity</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% books.forEach(book => { %>
+              <tr>
+                <td><%= book.title %></td>
+                <td><%= book.description %></td>
+                <td><%= book.isbn %></td>
+                <td><%= new Date(book.published).getFullYear() %></td>
+                <td><%= book.quantity %></td>
+                <td><%= book.price %></td>
+              </tr>
+              <% })%>
+            </tbody>
+          </table>
+
           <% } %>
         </div>
       </main>
