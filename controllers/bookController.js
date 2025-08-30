@@ -7,10 +7,14 @@ async function getBooks(req, res) {
     const books = await db.getAllBooks(searchTerm);
 
     if (books.length === 0) {
-      return res.render("index", { books, message: "No books found" });
+      return res.render("index", {
+        books,
+        searchTerm,
+        message: "No books found",
+      });
     }
     console.log("Books:", books);
-    res.render("index", { books });
+    res.render("index", { books, searchTerm });
   } catch (error) {
     console.error("Error getting books:", error);
     res.status(500).send("Server Error");

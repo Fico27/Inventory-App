@@ -5,7 +5,7 @@ async function getAllAuthors(searchTerm = "") {
   const queryParams = [];
 
   if (searchTerm) {
-    queryText += "WHERE authors ILIKE $1";
+    queryText += " WHERE authors.name ILIKE $1";
     queryParams.push(`%${searchTerm}%`);
   }
 

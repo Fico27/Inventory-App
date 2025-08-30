@@ -6,7 +6,7 @@ async function getAllGenres(searchTerm = "") {
   const queryParams = [];
 
   if (searchTerm) {
-    queryText += "WHERE genres ILIKE $1";
+    queryText += " WHERE genres.name ILIKE $1";
     queryParams.push(`%${searchTerm}%`);
   }
 

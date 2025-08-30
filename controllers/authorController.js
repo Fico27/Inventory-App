@@ -6,10 +6,14 @@ async function getAuthors(req, res) {
   try {
     const authors = await db.getAllAuthors(searchTerm);
     if (authors.length === 0) {
-      return res.render("authors", { authors, message: "Author not found" });
+      return res.render("author", {
+        authors,
+        searchTerm,
+        message: "Author not found",
+      });
     }
     console.log("Author:", authors);
-    res.render("author", { authors });
+    res.render("author", { authors, searchTerm });
   } catch (error) {
     console.error("Error getting authors:", error);
     res.status(500).send("Server Error");

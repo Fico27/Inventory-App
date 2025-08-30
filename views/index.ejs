@@ -28,6 +28,17 @@
         <div class="book-container">
           <h2>List of books:</h2>
 
+          <!-- <label for="search"></label> -->
+          <form action="/" method="GET">
+            <input
+              type="text"
+              id="search"
+              name="search"
+              placeholder="Search Books"
+              value="<%= searchTerm || '' %>"
+            />
+            <button type="submit">search</button>
+          </form>
           <% if (books.length === 0){ %>
           <p><%= message || "No Books Found!" %></p>
           <% } else { %>

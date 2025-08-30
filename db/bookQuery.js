@@ -8,7 +8,7 @@ async function getAllBooks(searchTerm = "") {
   // search term into an array IF it is looking for an exact book. Makes it
   //cleaner and performs santization as needed.
   if (searchTerm) {
-    queryText += "WHERE books ILIKE $1";
+    queryText += " WHERE books.title ILIKE $1";
     queryParams.push(`%${searchTerm}%`);
   }
 

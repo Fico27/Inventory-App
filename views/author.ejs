@@ -27,6 +27,16 @@
 
         <div class="authors-container">
           <h2>List of authors:</h2>
+          <form action="/author" method="GET">
+            <input
+              type="text"
+              id="search"
+              name="search"
+              placeholder="Search Authors"
+              value="<%= searchTerm || '' %>"
+            />
+            <button type="submit">search</button>
+          </form>
 
           <%if(authors.length === 0) { %>
           <p><%= message %></p>

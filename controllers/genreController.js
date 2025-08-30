@@ -9,11 +9,12 @@ async function getGenres(req, res) {
     if (genres.length === 0) {
       return res.render("genre", {
         genres,
+        searchTerm,
         message: "No Genres have been added",
       });
     }
     console.log("Genres:", genres);
-    res.render("genre", { genres });
+    res.render("genre", { genres, searchTerm });
   } catch (error) {
     console.error("Error getting genres", error);
     res.status(500).send("Server Error");
