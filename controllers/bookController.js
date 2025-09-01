@@ -37,7 +37,7 @@ async function getBookEdit(req, res) {
 
 async function postUpdateBook(req, res) {
   const { id } = req.params;
-  const { title, isbn, published, quantity, price, description } = req.params;
+  const { title, isbn, published, quantity, price, description } = req.body;
   try {
     await db.updateBook(id, {
       title,
