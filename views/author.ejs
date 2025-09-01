@@ -53,6 +53,7 @@
                 <td><%= author.name%></td>
                 <td><%= new Date(author.birth_date).getFullYear()%></td>
                 <td><%= author.bio%></td>
+                <td><a href="/author/<%= author.id %>/edit">Edit</a></td>
               </tr>
 
               <%})%>

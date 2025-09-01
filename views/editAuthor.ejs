@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1 class="logo">BIMS</h1>
+      </header>
+
+      <section class="sidebar">
+        <ul>
+          <li><a href="/author">Authors</a></li>
+          <li><a href="/">Books</a></li>
+          <li><a href="/genre">Genres</a></li>
+        </ul>
+      </section>
+
+      <main class="main">
+        <div class="main-heading">
+          <h2>Edit author here:</h2>
+        </div>
+        <form action="/author/<%= author.id %>/update" method="POST">
+          <label for="name">Author:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value="<%= author.name %>"
+            required
+          />
+          <label for="description">Bio:</label>
+          <textarea id="bio" name="bio"><%= author.bio %></textarea>
+
+          <label for="published">Year Born:</label>
+          <input
+            type="date"
+            id="birth_date"
+            name="birth_date"
+            value="<%= author.birth_date %>"
+          />
+
+          <button type="submit">Submit Edit</button>
+        </form>
+      </main>
+    </div>
+  </body>
+</html>

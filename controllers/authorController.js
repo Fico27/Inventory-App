@@ -20,6 +20,40 @@ async function getAuthors(req, res) {
   }
 }
 
+async function getAuthorEdit(req, res) {
+  try {
+    const author = await db.getAuthorById(req.params.id);
+
+    if (!author) {
+      res.render("editAuthor", { message: "No Author to edit" });
+    }
+    res.render("editAuthor", { author });
+  } catch (error) {
+    console.error("Error getting author:", error);
+    res.status(500).send("Server Error");
+  }
+}
+
+async function postUpdateAuthor(res, req) {
+  const { id } = req.params;
+  const { name, bio, birth_date } = req.body;
+
+  try {
+    await db.updateAuthor(id, {
+      name,
+      bio,
+      birth_date,
+    });
+    res.redirect("author");
+  } catch (error) {
+    console.error("Error updating author:", error);
+    const author = await db.getAuthorById(id);
+    res.render("editAuthor", { author, message: "Error updating author" });
+  }
+}
+
 module.exports = {
   getAuthors,
+  getAuthorEdit,
+  postUpdateAuthor,
 };
