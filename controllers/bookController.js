@@ -35,7 +35,28 @@ async function getBookEdit(req, res) {
   }
 }
 
+async function postUpdateBook(req, res) {
+  const { id } = req.params;
+  const { title, isbn, published, quantity, price, description } = req.params;
+  try {
+    await db.updateBook(id, {
+      title,
+      isbn,
+      published,
+      quantity: parseInt(quantity),
+      price: parseFloat(price),
+      description,
+    });
+    res.redirect("/");
+  } catch (error) {
+    console.error("Error updating book:", error);
+    const book = await db.getBookById(id);
+    res.render("editBook", { book, message: "Error Updating book" });
+  }
+}
+
 module.exports = {
   getBooks,
   getBookEdit,
+  postUpdateBook,
 };
