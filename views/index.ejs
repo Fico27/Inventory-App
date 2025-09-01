@@ -62,6 +62,9 @@
                 <td><%= new Date(book.published).getFullYear() %></td>
                 <td><%= book.quantity %></td>
                 <td><%= book.price %></td>
+                <td>
+                  <a href="/<%= book.id %>/edit">Edit</a>
+                </td>
               </tr>
               <% })%>
             </tbody>

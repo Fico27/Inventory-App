@@ -21,6 +21,21 @@ async function getBooks(req, res) {
   }
 }
 
+async function getBookEdit(req, res) {
+  try {
+    const book = await db.getBookById(req.params.id);
+
+    if (!book) {
+      return res.render("editBook", { message: "No book to edit!" });
+    }
+    res.render("editBook", { book });
+  } catch (error) {
+    console.error("Error getting book for edit:", error);
+    res.status(500).send("Server Error");
+  }
+}
+
 module.exports = {
   getBooks,
+  getBookEdit,
 };
