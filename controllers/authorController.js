@@ -34,7 +34,7 @@ async function getAuthorEdit(req, res) {
   }
 }
 
-async function postUpdateAuthor(res, req) {
+async function postUpdateAuthor(req, res) {
   const { id } = req.params;
   const { name, bio, birth_date } = req.body;
 
@@ -44,7 +44,7 @@ async function postUpdateAuthor(res, req) {
       bio,
       birth_date,
     });
-    res.redirect("author");
+    res.redirect("/author");
   } catch (error) {
     console.error("Error updating author:", error);
     const author = await db.getAuthorById(id);
