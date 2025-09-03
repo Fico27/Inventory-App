@@ -47,8 +47,8 @@ async function postUpdateAuthor(req, res) {
     res.redirect("/author");
   } catch (error) {
     console.error("Error updating author:", error);
-    const author = await db.getAuthorById(id);
-    res.render("editAuthor", { author, message: "Error updating author" });
+
+    res.render("editAuthor", { message: "Error updating author" });
   }
 }
 

@@ -51,7 +51,7 @@ async function postUpdateBook(req, res) {
   } catch (error) {
     console.error("Error updating book:", error);
     const book = await db.getBookById(id);
-    res.render("editBook", { book, message: "Error Updating book" });
+    res.render("editBook", { book, message: "Error updating book" });
   }
 }
 

@@ -21,6 +21,37 @@ async function getGenres(req, res) {
   }
 }
 
+async function getGenreEdit(req, res) {
+  try {
+    const genre = await db.getGenreById(req.params.id);
+
+    if (!genre) {
+      res.render("editGenre", { message: "Genre does not exist!" });
+    }
+    res.render("editGenre", { genre });
+  } catch (error) {
+    console.error("Error getting genre:", error);
+    res.status(500).send("Server Error");
+  }
+}
+
+async function postGenreUpdate(req, res) {
+  const { id } = req.params;
+  const { name } = req.body;
+
+  try {
+    await db.updateGenre(id, {
+      name,
+    });
+    res.redirect("/genre");
+  } catch (error) {
+    error.console("Error Updating Genre:", error);
+    res.render("editGenre", { message: "Error updating genre" });
+  }
+}
+
 module.exports = {
   getGenres,
+  getGenreEdit,
+  postGenreUpdate,
 };
