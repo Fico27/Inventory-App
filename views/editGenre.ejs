@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Edit Genre</title>
+    <link rel="stylesheet" href="/edits.css" />
   </head>
   <body>
     <div class="container">
@@ -21,22 +22,22 @@
 
       <main class="main">
         <div class="main-heading">
-          <h2>Edit your book here:</h2>
+          <h2>Edit your Genre here:</h2>
         </div>
+
+        <form action="/genre/<%= genre.id %>/update" method="POST">
+          <label for="title">Genre:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value="<%= genre.name %>"
+            required
+          />
+
+          <button type="submit">Submit Edit</button>
+        </form>
       </main>
-
-      <form action="/genre/<%= genre.id %>/update" method="POST">
-        <label for="title">Genre:</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          value="<%= genre.name %>"
-          required
-        />
-
-        <button type="submit">Submit Edit</button>
-      </form>
     </div>
   </body>
 </html>

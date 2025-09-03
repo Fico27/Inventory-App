@@ -71,26 +71,19 @@ header {
   flex-direction: column;
 }
 
-.genre-container {
+form {
   display: flex;
   flex-direction: column;
-  text-align: center;
-  width: 80%;
-  overflow-y: auto;
+  width: 25%;
+  justify-content: space-evenly;
 }
 
-.genre-table {
-  width: 100%;
+label {
+  font-weight: bold;
+  margin: 0.5rem 0;
 }
 
-.genre-table th,
-.genre-table td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: center;
-  vertical-align: top;
-}
-
-form {
-  margin-bottom: 1rem;
+button {
+  margin: 0.5rem auto;
+  padding: 0.2rem 0.4rem;
 }

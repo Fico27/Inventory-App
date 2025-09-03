@@ -17,10 +17,15 @@ body {
   grid-template-columns: 200px 1fr;
 }
 
-.header {
+header {
   grid-area: header;
-  background-color: aqua;
-  text-align: left;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo {
+  font-size: 3rem;
 }
 
 .sidebar {
@@ -48,6 +53,10 @@ body {
   color: black;
   font-size: 2rem;
   font-weight: bold;
+}
+
+form {
+  margin-bottom: 1rem;
 }
 
 .main {
