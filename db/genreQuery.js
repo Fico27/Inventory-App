@@ -16,7 +16,7 @@ async function getAllGenres(searchTerm = "") {
 
 async function getGenreById(id) {
   let queryText = `
-    SELECT genres.name FROM genres
+    SELECT genres.* FROM genres
     WHERE genres.id = $1
 
       `;
