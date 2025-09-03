@@ -16,8 +16,8 @@ async function getAllGenres(searchTerm = "") {
 
 async function getGenreById(id) {
   let queryText = `
-    SELECT genre.id from genres
-    WHERE genre.id = $1
+    SELECT genres.name FROM genres
+    WHERE genres.id = $1
 
       `;
   const { rows } = await pool.query(queryText, [id]);
