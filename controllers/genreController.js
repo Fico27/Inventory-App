@@ -50,8 +50,29 @@ async function postGenreUpdate(req, res) {
   }
 }
 
+async function deleteGenre(req, res) {
+  const { id } = req.params;
+  const searchTerm = req.query.search || "";
+  try {
+    await db.deleteGenre(id);
+    res.redirect("genre", {
+      searchTerm,
+      message: "Genre deleted successfully!",
+    });
+  } catch (error) {
+    console.error("Error deleting genre:", error);
+    const genres = await db.getAllGenres();
+    res.render("genre", {
+      genres,
+      searchTerm,
+      message: "Error deleting genre",
+    });
+  }
+}
+
 module.exports = {
   getGenres,
   getGenreEdit,
   postGenreUpdate,
+  deleteGenre,
 };

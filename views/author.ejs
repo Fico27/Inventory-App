@@ -54,6 +54,11 @@
                 <td><%= new Date(author.birth_date).getFullYear()%></td>
                 <td><%= author.bio%></td>
                 <td><a href="/author/<%= author.id %>/edit">Edit</a></td>
+                <td>
+                  <form action="/author/<%=author.id%>/delete" method="post">
+                    <button type="submit">Delete</button>
+                  </form>
+                </td>
               </tr>
 
               <%})%>

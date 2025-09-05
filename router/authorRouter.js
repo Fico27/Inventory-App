@@ -5,5 +5,6 @@ const authorController = require("../controllers/authorController");
 authorRouter.get("/", authorController.getAuthors);
 authorRouter.get("/:id/edit", authorController.getAuthorEdit);
 authorRouter.post("/:id/update", authorController.postUpdateAuthor);
+authorRouter.post("/:id/delete", authorController.deleteAuthor);
 
 module.exports = authorRouter;

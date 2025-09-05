@@ -48,8 +48,23 @@ async function updateGenre(id, { name }) {
   }
 }
 
+async function deleteGenre(id) {
+  const client = await pool.connect();
+  try {
+    await client.query("BEGING");
+    await client.query("DELETE FROM genres WHERE id = $1", [id]);
+    await client.query("COMMIT");
+  } catch (error) {
+    await client.query("ROLLBACK");
+    throw error;
+  } finally {
+    client.release();
+  }
+}
+
 module.exports = {
   getAllGenres,
   getGenreById,
   updateGenre,
+  deleteGenre,
 };

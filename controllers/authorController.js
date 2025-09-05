@@ -52,8 +52,26 @@ async function postUpdateAuthor(req, res) {
   }
 }
 
+async function deleteAuthor(req, res) {
+  const { id } = req.params;
+  const searchTerm = req.query.search || "";
+  try {
+    await db.deleteAuthor(id);
+    res.redirect("author", { searchTerm, message: "Author has been deleted!" });
+  } catch (error) {
+    console.error("Error deleting author:", error);
+    const authors = await db.getAllAuthors();
+    res.render("author", {
+      authors,
+      searchTerm,
+      message: "Error deleting author",
+    });
+  }
+}
+
 module.exports = {
   getAuthors,
   getAuthorEdit,
   postUpdateAuthor,
+  deleteAuthor,
 };
