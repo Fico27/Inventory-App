@@ -51,6 +51,11 @@
               <tr>
                 <td><%= genre.name %></td>
                 <td><a href="/genre/<%= genre.id %>/edit">Edit</a></td>
+                <td>
+                  <form action="/genre/<%= genre.id %>/delete" method="post">
+                    <button type="submit">Delete</button>
+                  </form>
+                </td>
               </tr>
 
               <% })%>

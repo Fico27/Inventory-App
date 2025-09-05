@@ -53,15 +53,13 @@ async function postGenreUpdate(req, res) {
 async function deleteGenre(req, res) {
   const { id } = req.params;
   const searchTerm = req.query.search || "";
+  const genres = await db.getAllGenres();
   try {
     await db.deleteGenre(id);
-    res.redirect("genre", {
-      searchTerm,
-      message: "Genre deleted successfully!",
-    });
+    res.redirect("/genre");
   } catch (error) {
     console.error("Error deleting genre:", error);
-    const genres = await db.getAllGenres();
+
     res.render("genre", {
       genres,
       searchTerm,

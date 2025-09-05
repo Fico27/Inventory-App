@@ -51,7 +51,7 @@ async function updateGenre(id, { name }) {
 async function deleteGenre(id) {
   const client = await pool.connect();
   try {
-    await client.query("BEGING");
+    await client.query("BEGIN");
     await client.query("DELETE FROM genres WHERE id = $1", [id]);
     await client.query("COMMIT");
   } catch (error) {
