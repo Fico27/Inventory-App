@@ -46,8 +46,24 @@ async function updateAuthor(id, { name, bio, birth_date }) {
   }
 }
 
+async function deleteAuthor(id) {
+  const client = await pool.connect();
+
+  try {
+    await client.query("BEGIN");
+    await client.query("DELETE FROM authors WHERE id = $1", [id]);
+    await client.query("COMMIT");
+  } catch (error) {
+    await client.query("ROLLBACK");
+    throw error;
+  } finally {
+    client.release();
+  }
+}
+
 module.exports = {
   getAllAuthors,
   getAuthorById,
   updateAuthor,
+  deleteAuthor,
 };

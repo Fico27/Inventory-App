@@ -65,6 +65,11 @@
                 <td>
                   <a href="/<%= book.id %>/edit">Edit</a>
                 </td>
+                <td>
+                  <form action="/<%= book.id %>/delete" method="post">
+                    <button type="submit">Delete</button>
+                  </form>
+                </td>
               </tr>
               <% })%>
             </tbody>

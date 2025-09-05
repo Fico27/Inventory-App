@@ -1,4 +1,5 @@
 const db = require("../db/bookQuery");
+const { param } = require("../router/authorRouter");
 
 async function getBooks(req, res) {
   const searchTerm = req.query.search || "";
@@ -55,8 +56,25 @@ async function postUpdateBook(req, res) {
   }
 }
 
+async function deleteBook(req, res) {
+  const { id } = req.params;
+  const searchTerm = req.query.search || "";
+  try {
+    await db.deleteBook(id);
+    res.redirect("index", {
+      searchTerm,
+      message: "Book deleted successfully!",
+    });
+  } catch (error) {
+    console.error("Error deleting book:", error);
+    const books = await db.getAllBooks();
+    res.render("index", { books, searchTerm, message: "Error deleting book" });
+  }
+}
+
 module.exports = {
   getBooks,
   getBookEdit,
   postUpdateBook,
+  deleteBook,
 };

@@ -63,8 +63,23 @@ Disconnect from db */
   }
 }
 
+async function deleteBook(id) {
+  const client = await pool.connect();
+  try {
+    await client.query("BEGIN");
+    await client.query("DELETE FROM books WHERE id = $1", [id]);
+    await client.query("COMMIT");
+  } catch (error) {
+    await client.query("ROLLBACK");
+    throw error;
+  } finally {
+    client.release();
+  }
+}
+
 module.exports = {
   getAllBooks,
   getBookById,
   updateBook,
+  deleteBook,
 };
