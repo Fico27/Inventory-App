@@ -77,6 +77,27 @@ async function deleteBook(id) {
   }
 }
 
+async function addBook({
+  title,
+  isbn,
+  published,
+  quantity,
+  price,
+  description,
+}) {
+
+  const client = await pool.connect();
+  const queryText = `INSERT INTO books (title, isbn, published, quantity, price, description)
+  
+  VALUES ('$1','$2','$3','$4','$5','$6')
+  `
+
+  try{
+    await client.query("BEGIN");
+    await client.query(queryText, [title, isbn, published, quantity, price, description])
+  }
+}
+
 module.exports = {
   getAllBooks,
   getBookById,
