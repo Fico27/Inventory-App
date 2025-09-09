@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add book</title>
+    <link rel="stylesheet" href="/edits.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1 class="logo">BIMS</h1>
+      </header>
+
+      <section class="sidebar">
+        <ul>
+          <li><a href="/author">Authors</a></li>
+          <li><a href="/">Books</a></li>
+          <li><a href="/genre">Genres</a></li>
+        </ul>
+      </section>
+
+      <main class="main">
+        <div class="main-heading">
+          <h2>Add your book here:</h2>
+        </div>
+
+        <form action="/create" method="POST">
+          <label for="title">Title:</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            value="<%= formData?.title || '' %>"
+            required
+          />
+
+          <label for="isbn">ISBN:</label>
+          <input
+            type="text"
+            id="isbn"
+            name="isbn"
+            value="<%= formData?.isbn || '' %>"
+            required
+          />
+
+          <label for="published">Published Date:</label>
+          <input
+            type="date"
+            id="published"
+            name="published"
+            value="<%= formData?.published || '' %>"
+          />
+
+          <label for="quantity">Quantity:</label>
+          <input
+            type="number"
+            id="quantity"
+            name="quantity"
+            min="0"
+            value="<%= formData?.quantity || '' %>"
+            required
+          />
+
+          <label for="price">Price:</label>
+          <input
+            type="number"
+            id="price"
+            name="price"
+            step="0.01"
+            min="0"
+            value="<%= formData?.price || '' %>"
+            required
+          />
+
+          <label for="description">Description:</label>
+          <textarea id="description" name="description" rows="5">
+<%= formData?.description || '' %></textarea
+          >
+
+          <button type="submit">Add Book</button>
+        </form>
+      </main>
+    </div>
+  </body>
+</html>

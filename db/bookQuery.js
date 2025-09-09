@@ -76,6 +76,7 @@ async function deleteBook(id) {
     client.release();
   }
 }
+//// CONTINUE THIS WHEN I GET BACK FROM A SWIM
 
 async function addBook({
   title,
@@ -85,16 +86,28 @@ async function addBook({
   price,
   description,
 }) {
-
   const client = await pool.connect();
   const queryText = `INSERT INTO books (title, isbn, published, quantity, price, description)
   
-  VALUES ('$1','$2','$3','$4','$5','$6')
-  `
+  VALUES ($1,$2,$3,$4,$5,$6)
+  `;
 
-  try{
+  try {
     await client.query("BEGIN");
-    await client.query(queryText, [title, isbn, published, quantity, price, description])
+    await client.query(queryText, [
+      title,
+      isbn,
+      published,
+      quantity,
+      price,
+      description,
+    ]);
+    await client.query("COMMIT");
+  } catch (error) {
+    await client.query("ROLLBACK");
+    throw error;
+  } finally {
+    client.release();
   }
 }
 
@@ -103,4 +116,5 @@ module.exports = {
   getBookById,
   updateBook,
   deleteBook,
+  addBook,
 };
