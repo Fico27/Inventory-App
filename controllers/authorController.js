@@ -57,7 +57,7 @@ async function deleteAuthor(req, res) {
   const searchTerm = req.query.search || "";
   try {
     await db.deleteAuthor(id);
-    res.redirect("author", { searchTerm, message: "Author has been deleted!" });
+    res.redirect("/author");
   } catch (error) {
     console.error("Error deleting author:", error);
     const authors = await db.getAllAuthors();
