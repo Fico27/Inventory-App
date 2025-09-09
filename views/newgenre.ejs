@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Genre</title>
+    <link rel="stylesheet" href="/edits.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1 class="logo">BIMS</h1>
+      </header>
+
+      <section class="sidebar">
+        <ul>
+          <li><a href="/author">Authors</a></li>
+          <li><a href="/">Books</a></li>
+          <li><a href="/genre">Genres</a></li>
+        </ul>
+      </section>
+
+      <main class="main">
+        <div class="main-heading">
+          <h2>Add your genre here:</h2>
+        </div>
+
+        <form action="/genre/creategenre" method="POST">
+          <label for="genre">Genre:</label>
+          <input
+            type="text"
+            id="genre"
+            name="genre"
+            value="<%= formData?.genre || '' %>"
+            required
+          />
+
+          <button type="submit">Add Book</button>
+        </form>
+      </main>
+    </div>
+  </body>
+</html>

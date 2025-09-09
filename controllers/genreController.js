@@ -1,4 +1,5 @@
 const db = require("../db/genreQuery");
+const { post } = require("../router/authorRouter");
 
 async function getGenres(req, res) {
   const searchTerm = req.query.search || "";
@@ -68,9 +69,28 @@ async function deleteGenre(req, res) {
   }
 }
 
+async function getAddGenre(req, res) {
+  res.render("newgenre", { message: null, formData: null });
+}
+
+async function postAddGenre(req, res) {
+  const name = req.body.genre;
+  const searchTerm = req.query.search || "";
+  const genres = await db.getAllGenres();
+  try {
+    await db.addGenre(name);
+    res.redirect("/genre");
+  } catch (error) {
+    console.error("Error adding genre:", error);
+    res.render("genre", { searchTerm, genres, message: "Error adding genre" });
+  }
+}
+
 module.exports = {
   getGenres,
   getGenreEdit,
   postGenreUpdate,
   deleteGenre,
+  getAddGenre,
+  postAddGenre,
 };
