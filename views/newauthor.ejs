@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add book</title>
+    <link rel="stylesheet" href="/edits.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1 class="logo">BIMS</h1>
+      </header>
+
+      <section class="sidebar">
+        <ul>
+          <li><a href="/author">Authors</a></li>
+          <li><a href="/">Books</a></li>
+          <li><a href="/genre">Genres</a></li>
+        </ul>
+      </section>
+
+      <main class="main">
+        <div class="main-heading">
+          <h2>Add an author here:</h2>
+        </div>
+
+        <form action="/createauthor" method="POST">
+          <label for="name">Author name:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value="<%= formData?.name || '' %>"
+            required
+          />
+
+          <label for="bio">Bio:</label>
+          <textarea id="bio" name="bio" rows="5">
+<%= formData?.description || '' %></textarea
+          >
+
+          <label for="published">Birthday:</label>
+          <input
+            type="date"
+            id="birthday"
+            name="birthday"
+            value="<%= formData?.birthday|| '' %>"
+          />
+
+          <button type="submit">Add Author</button>
+        </form>
+      </main>
+    </div>
+  </body>
+</html>

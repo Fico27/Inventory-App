@@ -61,9 +61,27 @@ async function deleteAuthor(id) {
   }
 }
 
+async function addAuthor({ name, bio, birthday }) {
+  const client = await pool.connect();
+  const queryText = `INSERT INTO authors (name, bio, birth_date)
+  VALUES ($1, $2, $3)`;
+
+  try {
+    await client.query("BEGIN");
+    await client.query(queryText, [name, bio, birthday]);
+    await client.query("COMMIT");
+  } catch (error) {
+    await client.query("ROLLBACK");
+    throw error;
+  } finally {
+    client.release();
+  }
+}
+
 module.exports = {
   getAllAuthors,
   getAuthorById,
   updateAuthor,
   deleteAuthor,
+  addAuthor,
 };

@@ -69,9 +69,33 @@ async function deleteAuthor(req, res) {
   }
 }
 
+async function getAddAuthor(req, res) {
+  res.render("newauthor", { message: null, formData: null });
+}
+
+async function postAddAuthor(req, res) {
+  const { name, bio, birthday } = req.body;
+  const searchTerm = req.query.search || "";
+  const authors = await db.getAllAuthors();
+
+  try {
+    await db.addAuthor({ name, bio, birthday });
+    res.redirect("/author");
+  } catch (error) {
+    console.error("Error adding author:", error);
+    res.render("author", {
+      searchTerm,
+      authors,
+      message: "Error adding author",
+    });
+  }
+}
+
 module.exports = {
   getAuthors,
   getAuthorEdit,
   postUpdateAuthor,
   deleteAuthor,
+  getAddAuthor,
+  postAddAuthor,
 };
