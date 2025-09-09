@@ -37,6 +37,7 @@
               value="<%= searchTerm || '' %>"
             />
             <button type="submit">Search</button>
+            <a href="/genre/newgenre" class="add-btn">Add Genre</a>
           </form>
           <% if(genres.length === 0) {%>
           <p><%= message || "No Genres Found"%></p>

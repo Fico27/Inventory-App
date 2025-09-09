@@ -95,3 +95,12 @@ form {
   text-align: left;
   vertical-align: top;
 }
+
+.add-btn {
+  padding: 2px 6px;
+  border: 1px outset buttonborder;
+  border-radius: 3px;
+  color: buttonface;
+  background-color: buttontext;
+  text-decoration: none;
+}
