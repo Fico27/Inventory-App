@@ -61,7 +61,10 @@
                 <td><%= book.title %></td>
                 <td><%= book.description %></td>
                 <td><%= book.isbn %></td>
-                <td><%= new Date(book.published).getFullYear() %></td>
+                <td>
+                  <%= book.published ? new Date(book.published).getFullYear() :
+                  "" %>
+                </td>
                 <td><%= book.quantity %></td>
                 <td><%= book.price %></td>
                 <td>
