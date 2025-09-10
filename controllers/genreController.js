@@ -46,7 +46,7 @@ async function postGenreUpdate(req, res) {
     });
     res.redirect("/genre");
   } catch (error) {
-    error.console("Error Updating Genre:", error);
+    console.error("Error Updating Genre:", error);
     res.render("editGenre", { message: "Error updating genre" });
   }
 }

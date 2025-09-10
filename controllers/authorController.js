@@ -25,9 +25,9 @@ async function getAuthorEdit(req, res) {
     const author = await db.getAuthorById(req.params.id);
 
     if (!author) {
-      res.render("editAuthor", { message: "No Author to edit" });
+      return res.render("editAuthor", { message: "No Author to edit" });
     }
-    res.render("editAuthor", { author });
+    return res.render("editAuthor", { author });
   } catch (error) {
     console.error("Error getting author:", error);
     res.status(500).send("Server Error");
