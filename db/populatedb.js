@@ -104,14 +104,29 @@ INSERT INTO book_genres (book_id, genre_id)
 
 async function main() {
   console.log("seeding...");
-  const connectionString = `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_DATABASE}`;
+  const connectionString = process.env.DATABASE_URL;
+  console.log("Connection string:", connectionString);
+  if (!connectionString) {
+    console.error("Error: DATABASE_URL is not defined in .env");
+    process.exit(1);
+  }
   const client = new Client({
     connectionString,
+    ssl: {
+      rejectUnauthorized: false,
+    },
   });
-  await client.connect();
-  await client.query(SQL);
-  await client.end();
-  console.log("done");
+  try {
+    await client.connect();
+    console.log("Connected to database");
+    await client.query(SQL);
+    console.log("Database seeded successfully");
+  } catch (error) {
+    console.error("Error seeding database:", error);
+  } finally {
+    await client.end();
+    console.log("Database connection closed");
+  }
 }
 
 main();
