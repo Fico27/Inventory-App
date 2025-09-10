@@ -15,10 +15,10 @@ async function getGenres(req, res) {
       });
     }
     console.log("Genres:", genres);
-    res.render("genre", { genres, searchTerm });
+    return res.render("genre", { genres, searchTerm });
   } catch (error) {
     console.error("Error getting genres", error);
-    res.status(500).send("Server Error");
+    return res.status(500).send("Server Error");
   }
 }
 
@@ -27,12 +27,12 @@ async function getGenreEdit(req, res) {
     const genre = await db.getGenreById(req.params.id);
 
     if (!genre) {
-      res.render("editGenre", { message: "Genre does not exist!" });
+      return res.render("editGenre", { message: "Genre does not exist!" });
     }
-    res.render("editGenre", { genre });
+    return res.render("editGenre", { genre });
   } catch (error) {
     console.error("Error getting genre:", error);
-    res.status(500).send("Server Error");
+    return res.status(500).send("Server Error");
   }
 }
 
@@ -44,10 +44,10 @@ async function postGenreUpdate(req, res) {
     await db.updateGenre(id, {
       name,
     });
-    res.redirect("/genre");
+    return res.redirect("/genre");
   } catch (error) {
     console.error("Error Updating Genre:", error);
-    res.render("editGenre", { message: "Error updating genre" });
+    return res.render("editGenre", { message: "Error updating genre" });
   }
 }
 
@@ -57,11 +57,11 @@ async function deleteGenre(req, res) {
   const genres = await db.getAllGenres();
   try {
     await db.deleteGenre(id);
-    res.redirect("/genre");
+    return res.redirect("/genre");
   } catch (error) {
     console.error("Error deleting genre:", error);
 
-    res.render("genre", {
+    return res.render("genre", {
       genres,
       searchTerm,
       message: "Error deleting genre",
@@ -70,7 +70,7 @@ async function deleteGenre(req, res) {
 }
 
 async function getAddGenre(req, res) {
-  res.render("newgenre", { message: null, formData: null });
+  return res.render("newgenre", { message: null, formData: null });
 }
 
 async function postAddGenre(req, res) {
@@ -79,10 +79,14 @@ async function postAddGenre(req, res) {
   const genres = await db.getAllGenres();
   try {
     await db.addGenre(name);
-    res.redirect("/genre");
+    return res.redirect("/genre");
   } catch (error) {
     console.error("Error adding genre:", error);
-    res.render("genre", { searchTerm, genres, message: "Error adding genre" });
+    return res.render("genre", {
+      searchTerm,
+      genres,
+      message: "Error adding genre",
+    });
   }
 }
 

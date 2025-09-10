@@ -13,10 +13,10 @@ async function getAuthors(req, res) {
       });
     }
     console.log("Author:", authors);
-    res.render("author", { authors, searchTerm });
+    return res.render("author", { authors, searchTerm });
   } catch (error) {
     console.error("Error getting authors:", error);
-    res.status(500).send("Server Error");
+    return res.status(500).send("Server Error");
   }
 }
 
@@ -30,7 +30,7 @@ async function getAuthorEdit(req, res) {
     return res.render("editAuthor", { author });
   } catch (error) {
     console.error("Error getting author:", error);
-    res.status(500).send("Server Error");
+    return res.status(500).send("Server Error");
   }
 }
 
@@ -44,24 +44,25 @@ async function postUpdateAuthor(req, res) {
       bio,
       birth_date,
     });
-    res.redirect("/author");
+    return res.redirect("/author");
   } catch (error) {
     console.error("Error updating author:", error);
 
-    res.render("editAuthor", { message: "Error updating author" });
+    return res.render("editAuthor", { message: "Error updating author" });
   }
 }
 
 async function deleteAuthor(req, res) {
   const { id } = req.params;
   const searchTerm = req.query.search || "";
+  const authors = await db.getAllAuthors();
   try {
     await db.deleteAuthor(id);
-    res.redirect("/author");
+    return res.redirect("/author");
   } catch (error) {
     console.error("Error deleting author:", error);
-    const authors = await db.getAllAuthors();
-    res.render("author", {
+
+    return res.render("author", {
       authors,
       searchTerm,
       message: "Error deleting author",
@@ -70,7 +71,7 @@ async function deleteAuthor(req, res) {
 }
 
 async function getAddAuthor(req, res) {
-  res.render("newauthor", { message: null, formData: null });
+  return res.render("newauthor", { message: null, formData: null });
 }
 
 async function postAddAuthor(req, res) {
@@ -80,10 +81,10 @@ async function postAddAuthor(req, res) {
 
   try {
     await db.addAuthor({ name, bio, birthday });
-    res.redirect("/author");
+    return res.redirect("/author");
   } catch (error) {
     console.error("Error adding author:", error);
-    res.render("author", {
+    return res.render("author", {
       searchTerm,
       authors,
       message: "Error adding author",
